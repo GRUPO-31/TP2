@@ -1,22 +1,142 @@
 [
-  { "id": 1, "nombre": "C# / .NET Core", "categoria": "Backend", "descripcion": "Plataforma de desarrollo robusta utilizada por Diego para la lógica de servidor y servicios.", "nivel": "Avanzado" },
-  { "id": 2, "nombre": "SQL Server", "categoria": "Base de Datos", "descripcion": "Sistema gestor de bases de datos relacionales implementado para integridad y almacenamiento seguro.", "nivel": "Avanzado" },
-  { "id": 3, "nombre": "Arquitectura Backend", "categoria": "Backend", "descripcion": "Diseño de estructuras de alta densidad y optimización de flujos de datos.", "nivel": "Avanzado" },
-  { "id": 4, "nombre": "Optimización de Consultas", "categoria": "Backend", "descripcion": "Técnicas orientadas a mejorar el rendimiento y tiempos de respuesta en bases de datos.", "nivel": "Intermedio" },
-  { "id": 5, "nombre": "React.js", "categoria": "Frontend", "descripcion": "Librería principal utilizada por Brian para construir interfaces de usuario dinámicas y modulares.", "nivel": "Avanzado" },
-  { "id": 6, "nombre": "APIs RESTful", "categoria": "Fullstack", "descripcion": "Estándar de comunicación eficiente implementado para conectar servicios cliente-servidor.", "nivel": "Avanzado" },
-  { "id": 7, "nombre": "JavaScript (ES6+)", "categoria": "Frontend", "descripcion": "Lenguaje fundamental para la interactividad de la aplicación web y control de estados.", "nivel": "Avanzado" },
-  { "id": 8, "nombre": "Node.js & Express", "categoria": "Fullstack", "descripcion": "Entorno de ejecución para construir servidores web ligeros y escalables.", "nivel": "Intermedio" },
-  { "id": 9, "nombre": "Control de Calidad (QA)", "categoria": "Testing", "descripcion": "Metodologías de revisión de software aplicadas por Sergio para garantizar la estabilidad.", "nivel": "Avanzado" },
-  { "id": 10, "nombre": "Pruebas Unitarias (Jest)", "categoria": "Testing", "descripcion": "Framework de testing en JavaScript enfocado en verificar el funcionamiento de componentes.", "nivel": "Intermedio" },
-  { "id": 11, "nombre": "Cypress E2E", "categoria": "Testing", "descripcion": "Herramienta de pruebas end-to-end para simular la experiencia real del usuario en pantalla.", "nivel": "Intermedio" },
-  { "id": 12, "nombre": "Depuración de Fallos (Debugging)", "categoria": "Testing", "descripcion": "Análisis táctico para la detección temprana de errores de interfaz y lógica.", "nivel": "Avanzado" },
-  { "id": 13, "nombre": "Python", "categoria": "IA", "descripcion": "Lenguaje versátil empleado por Cristian para modelado, automatización y análisis de datos.", "nivel": "Avanzado" },
-  { "id": 14, "nombre": "Machine Learning", "categoria": "IA", "descripcion": "Algoritmos de aprendizaje automático para procesamiento inteligente de información.", "nivel": "Intermedio" },
-  { "id": 15, "nombre": "Automatización de Procesos", "categoria": "IA", "descripcion": "Scripts y flujos automáticos orientados a optimizar tareas repetitivas del sistema.", "nivel": "Avanzado" },
-  { "id": 16, "nombre": "Análisis de Datos", "categoria": "IA", "descripcion": "Procesamiento y estructuración de grandes volúmenes de datos para soporte de decisiones.", "nivel": "Intermedio" },
-  { "id": 17, "nombre": "Git & GitHub", "categoria": "Herramientas", "descripcion": "Sistema de control de versiones y colaboración grupal en repositorio público.", "nivel": "Avanzado" },
-  { "id": 18, "nombre": "Vite", "categoria": "Herramientas", "descripcion": "Empaquetador y entorno de desarrollo rápido optimizado para proyectos en React.", "nivel": "Intermedio" },
-  { "id": 19, "nombre": "Vercel", "categoria": "Herramientas", "descripcion": "Plataforma cloud utilizada para el despliegue funcional e infraestructura de producción.", "nivel": "Intermedio" },
-  { "id": 20, "nombre": "Diseño Cyberpunk UI", "categoria": "Estilos", "descripcion": "Identidad estética basada en estética de alta densidad, neones y terminales.", "nivel": "Avanzado" }
+  {
+    "id": 1,
+    "titulo": "Arquitectura Base React + Vite",
+    "descripcion": "Configuración del entorno de desarrollo modular con enrutamiento dinámico mediante React Router DOM.",
+    "categoria": "CORE",
+    "link": "https://vitejs.dev/"
+  },
+  {
+    "id": 2,
+    "titulo": "Sistema de Estilos Cyberpunk (CSS)",
+    "descripcion": "Hoja de estilos global inmersiva con efectos visuales avanzados, HUDs perimetrales y paleta verde neón.",
+    "categoria": "UI",
+    "link": "https://developer.mozilla.org/es/docs/Web/CSS"
+  },
+  {
+    "id": 3,
+    "titulo": "Consola de Diagnóstico Táctico",
+    "descripcion": "Módulo interactivo para validación de estado de núcleos y ejecución de protocolos de escaneo en tiempo real.",
+    "categoria": "LOGIC",
+    "link": "#"
+  },
+  {
+    "id": 4,
+    "titulo": "Estación API CoinCap Core",
+    "descripcion": "Módulo de consumo asíncrono con tolerancia a fallos, reintento de handshakes y respaldo local de seguridad.",
+    "categoria": "API",
+    "link": "https://docs.coincap.io/"
+  },
+  {
+    "id": 5,
+    "titulo": "Motor Gráfico Matrix (Canvas)",
+    "descripcion": "Fondo animado global en tiempo real renderizado mediante HTML5 Canvas con lluvia de caracteres y códigos.",
+    "categoria": "VFX",
+    "link": "https://developer.mozilla.org/es/docs/Web/API/Canvas_API"
+  },
+  {
+    "id": 6,
+    "titulo": "Matriz de Datos y Filtros",
+    "descripcion": "Sistema de indexación y búsqueda instantánea sobre registros estructurados con telemetría de accesos.",
+    "categoria": "DATA",
+    "link": "#"
+  },
+  {
+    "id": 7,
+    "titulo": "Terminal de Inspección Modal",
+    "descripcion": "Ventana flotante de nivel 5 para la visualización detallada de especificaciones técnicas y metadatos.",
+    "categoria": "UI",
+    "link": "#"
+  },
+  {
+    "id": 8,
+    "titulo": "Unidades Operativas (Equipo)",
+    "descripcion": "Grilla de perfiles detallados por integrante con biografías, gustos multimedia y especificaciones de rol.",
+    "categoria": "CORE",
+    "link": "#"
+  },
+  {
+    "id": 9,
+    "titulo": "Control de Calidad (QA)",
+    "descripcion": "Protocolos estrictos de depuración de errores, pruebas de estrés y verificación de integridad de datos.",
+    "categoria": "LOGIC",
+    "link": "#"
+  },
+  {
+    "id": 10,
+    "titulo": "Despliegue en Cloud (Vercel)",
+    "descripcion": "Estrategia de empaquetado optimizado, compilación de producción y publicación en infraestructura global.",
+    "categoria": "CLOUD",
+    "link": "https://vercel.com/"
+  },
+  {
+    "id": 11,
+    "titulo": "Gestión de Control de Versiones",
+    "descripcion": "Flujo de trabajo colaborativo mediante ramas, pull requests y sincronización de código en repositorio remoto.",
+    "categoria": "CORE",
+    "link": "https://github.com/"
+  },
+  {
+    "id": 12,
+    "titulo": "Efectos Glitch & Scanline",
+    "descripcion": "Implementación de interferencias visuales analógicas tipo CRT y escaneo láser sobre avatares y tarjetas.",
+    "categoria": "VFX",
+    "link": "#"
+  },
+  {
+    "id": 13,
+    "titulo": "Gestión de Estado Asíncrono",
+    "descripcion": "Manejo avanzado de hooks (useState, useEffect, useMemo) para renderizado fluido y optimización de rendimiento.",
+    "categoria": "LOGIC",
+    "link": "https://react.dev/"
+  },
+  {
+    "id": 14,
+    "titulo": "Protocolo de Respaldo Local",
+    "descripcion": "Estructura de datos de respaldo ante caídas de red o restricciones de políticas CORS externas.",
+    "categoria": "API",
+    "link": "#"
+  },
+  {
+    "id": 15,
+    "titulo": "Bitácora Técnica Institucional",
+    "descripcion": "Registro histórico de incidencias, decisiones de diseño, hitos de desarrollo y notas de versión del proyecto.",
+    "categoria": "DATA",
+    "link": "#"
+  },
+  {
+    "id": 16,
+    "titulo": "Árbol de Componentes Interactivo",
+    "descripcion": "Esquema visual de jerarquía y flujo de datos estructurado entre componentes padres e hijos de la aplicación.",
+    "categoria": "CORE",
+    "link": "#"
+  },
+  {
+    "id": 17,
+    "titulo": "Optimización Responsive UI",
+    "descripcion": "Adaptabilidad fluida de interfaces mediante grillas flexibles y menús desplegables para dispositivos móviles.",
+    "categoria": "UI",
+    "link": "#"
+  },
+  {
+    "id": 18,
+    "titulo": "Telemetría de Sesión en Vivo",
+    "descripcion": "Contadores reactivos de interacción de usuario para el monitoreo de frecuencia de consulta de recursos.",
+    "categoria": "DATA",
+    "link": "#"
+  },
+  {
+    "id": 19,
+    "titulo": "Validación de Integridad JSX",
+    "descripcion": "Prevención de errores de sintaxis y cumplimiento estricto de las directrices de renderizado de React.",
+    "categoria": "LOGIC",
+    "link": "#"
+  },
+  {
+    "id": 20,
+    "titulo": "Núcleo de Enrutamiento Dinámico",
+    "descripcion": "Mapeo de rutas institucionales para la navegación limpia sin recargas de página mediante SPA.",
+    "categoria": "CORE",
+    "link": "https://reactrouter.com/"
+  }
 ]
