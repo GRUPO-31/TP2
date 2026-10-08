@@ -1,0 +1,22 @@
+[
+  { "id": 1, "nombre": "React Router", "categoria": "Frontend", "descripcion": "Librería de enrutamiento declarativa para aplicaciones en React.", "nivel": "Avanzado" },
+  { "id": 2, "nombre": "Vite", "categoria": "Herramienta", "descripcion": "Entorno de desarrollo rápido y empaquetador moderno para frontend.", "nivel": "Intermedio" },
+  { "id": 3, "nombre": "Tailwind CSS", "categoria": "Estilos", "descripcion": "Framework CSS utilitario para diseño rápido y responsivo.", "nivel": "Intermedio" },
+  { "id": 4, "nombre": "Node.js", "categoria": "Backend", "descripcion": "Entorno de ejecución de JavaScript basado en el motor V8 de Chrome.", "nivel": "Avanzado" },
+  { "id": 5, "nombre": "Express", "categoria": "Backend", "descripcion": "Framework minimalista y flexible para aplicaciones web en Node.js.", "nivel": "Intermedio" },
+  { "id": 6, "nombre": "MongoDB", "categoria": "Base de Datos", "descripcion": "Base de datos NoSQL orientada a documentos escalable.", "nivel": "Avanzado" },
+  { "id": 7, "nombre": "SQL Server", "categoria": "Base de Datos", "descripcion": "Sistema de gestión de bases de datos relacionales de Microsoft.", "nivel": "Avanzado" },
+  { "id": 8, "nombre": "Git", "categoria": "Herramienta", "descripcion": "Sistema de control de versiones distribuido para seguimiento de código.", "nivel": "Avanzado" },
+  { "id": 9, "nombre": "GitHub", "categoria": "Herramienta", "descripcion": "Plataforma de alojamiento de código para control de versiones y colaboración.", "nivel": "Avanzado" },
+  { "id": 10, "nombre": "Vercel", "categoria": "Cloud", "descripcion": "Plataforma de despliegue e infraestructura serverless para frontend.", "nivel": "Intermedio" },
+  { "id": 11, "nombre": "Python", "categoria": "Backend", "descripcion": "Lenguaje de programación versátil enfocado en IA y automatización.", "nivel": "Avanzado" },
+  { "id": 12, "nombre": "TensorFlow", "categoria": "IA", "descripcion": "Biblioteca de código abierto para aprendizaje automático y deep learning.", "nivel": "Avanzado" },
+  { "id": 13, "nombre": "Cypress", "categoria": "Testing", "descripcion": "Herramienta de pruebas end-to-end automatizadas para aplicaciones web.", "nivel": "Intermedio" },
+  { "id": 14, "nombre": "Jest", "categoria": "Testing", "descripcion": "Framework de pruebas unitarias en JavaScript con enfoque en simplicidad.", "nivel": "Intermedio" },
+  { "id": 15, "nombre": "Docker", "categoria": "Herramienta", "descripcion": "Plataforma para empaquetar y ejecutar aplicaciones en contenedores.", "nivel": "Avanzado" },
+  { "id": 16, "nombre": "Postman", "categoria": "Testing", "descripcion": "Plataforma para diseño, prueba y documentación colaborativa de APIs.", "nivel": "Intermedio" },
+  { "id": 17, "nombre": "TypeScript", "categoria": "Frontend", "descripcion": "Superset de JavaScript que añade tipado estático opcional.", "nivel": "Avanzado" },
+  { "id": 18, "nombre": "Rest API", "categoria": "Backend", "descripcion": "Estándar de arquitectura para diseño de servicios web interoperables.", "nivel": "Avanzado" },
+  { "id": 19, "nombre": "HTML5 & CSS3", "categoria": "Frontend", "descripcion": "Lenguajes fundamentales para estructura y diseño visual web.", "nivel": "Básico" },
+  { "id": 20, "nombre": "JetBrains Mono", "categoria": "Estilos", "descripcion": "Tipografía monoespaciada optimizada para lectura de código fuente.", "nivel": "Básico" }
+]
