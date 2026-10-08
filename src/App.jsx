@@ -4,7 +4,7 @@ import Sidebar from './components/sidebar';
 import Home from './pages/home';
 import Equipo from './pages/equipo';
 import Catalogo from './pages/catalogo';
-import ApiPublica from './pages/apipublica';
+import ApiPublica from './pages/apiPublica';
 import ArbolComponentes from './pages/arbolComponentes';
 import Bitacora from './pages/bitacora';
 import './index.css';
