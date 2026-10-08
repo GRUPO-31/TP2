@@ -282,7 +282,6 @@ export default function Home() {
         }
       `}</style>
 
-      //home//
     </div>
   );
 }
