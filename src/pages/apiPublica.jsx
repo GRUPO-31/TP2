@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import CryptoChart from '../components/CryptoChart';
 
 const COINGECKO_API = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=8&page=1&sparkline=false';
 
@@ -19,6 +20,36 @@ export default function ApiPublica() {
   const [error, setError] = useState(null);
   const [ultimaActualizacion, setUltimaActualizacion] = useState(null);
   const [modalCrypto, setModalCrypto] = useState(null);
+  const [selectedCryptoId, setSelectedCryptoId] = useState('');
+  const selectedCrypto = assets.find((coin) => coin.id === selectedCryptoId) || assets[0];
+  const chartCoinId = selectedCrypto?.id;
+  const [history, setHistory] = useState({ coinId: null, data: [], loading: false, error: null });
+
+  useEffect(() => {
+    if (!chartCoinId) return;
+    const controller = new AbortController();
+    setHistory({ coinId: chartCoinId, data: [], loading: true, error: null });
+
+    async function consultarHistorial() {
+      try {
+        // Siete días ofrece resolución horaria automática y timestamps reales.
+        const response = await fetch(`https://api.coingecko.com/api/v3/coins/${encodeURIComponent(chartCoinId)}/market_chart?vs_currency=usd&days=7`, { signal: controller.signal });
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+        const json = await response.json();
+        if (!Array.isArray(json.prices)) throw new Error('Historial inválido');
+        if (!controller.signal.aborted) {
+          setHistory({ coinId: chartCoinId, data: json.prices, loading: false, error: null });
+        }
+      } catch (err) {
+        if (controller.signal.aborted) return;
+        console.error('Error al consultar historial:', err);
+        setHistory({ coinId: chartCoinId, data: [], loading: false, error: 'No se pudo cargar el historial horario. Intentá actualizar el mercado.' });
+      }
+    }
+
+    consultarHistorial();
+    return () => controller.abort();
+  }, [chartCoinId, ultimaActualizacion]);
 
   const consultarMercado = async () => {
     setCargando(true);
@@ -93,7 +124,10 @@ export default function ApiPublica() {
                 key={coin.id} 
                 className="card-item crypto-card-vfx" 
                 style={{position: 'relative', overflow: 'hidden', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}
-                onClick={() => setModalCrypto(coin)}
+                onClick={() => {
+                  setSelectedCryptoId(coin.id);
+                  setModalCrypto(coin);
+                }}
               >
                 <div className="crt-noise-overlay"></div>
                 <div className="scanner-beam-vfx"></div>
@@ -122,6 +156,29 @@ export default function ApiPublica() {
         </div>
       )}
 
+      <section aria-labelledby="crypto-chart-heading" style={{ marginTop: '30px', paddingTop: '20px', borderTop: '1px dashed var(--border-dim)', fontFamily: 'var(--font-code)' }}>
+        <h3 id="crypto-chart-heading" style={{ color: 'var(--green)', marginBottom: '15px' }}>HISTORIAL DE PRECIOS // 7 DÍAS</h3>
+        <label htmlFor="crypto-chart-select" style={{ display: 'block', marginBottom: '8px' }}>Criptomoneda</label>
+        <select
+          id="crypto-chart-select"
+          className="filter-select"
+          style={{ width: '100%', minWidth: 0, marginBottom: '20px' }}
+          value={selectedCrypto?.id || ''}
+          onChange={(event) => setSelectedCryptoId(event.target.value)}
+          disabled={assets.length === 0}
+        >
+          {assets.length === 0 && <option value="">Sin activos disponibles</option>}
+          {assets.map((coin) => <option key={coin.id} value={coin.id}>{coin.name} ({coin.symbol.toUpperCase()})</option>)}
+        </select>
+        {(cargando && assets.length === 0) || (chartCoinId && (history.loading || history.coinId !== chartCoinId)) ? (
+          <p role="status" style={{ color: 'var(--text-muted)' }}>Cargando historial de precios...</p>
+        ) : history.error ? (
+          <p role="alert" style={{ color: '#ff4444' }}>{history.error}</p>
+        ) : (
+          <CryptoChart data={history.data} name={selectedCrypto?.name || ''} />
+        )}
+      </section>
+
       {/* MODAL DE INSPECCIÓN DE ACTIVO */}
       {modalCrypto && (
         <div style={{
@@ -147,7 +204,7 @@ export default function ApiPublica() {
             <div className="corner-hud bl"></div><div className="corner-hud br"></div>
 
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px dashed var(--border-dim)', paddingBottom: '10px', marginBottom: '15px', fontFamily: 'var(--font-code)', fontSize: '0.75rem', color: 'var(--green)'}}>
-              <span>// INSPECCIÓN DE ACTIVO DIGITAL</span>
+              <span>{'// INSPECCIÓN DE ACTIVO DIGITAL'}</span>
               <button onClick={() => setModalCrypto(null)} className="btn" style={{padding: '2px 8px', fontSize: '0.7rem', color: '#ff4444', borderColor: '#ff4444'}}>[ X ]</button>
             </div>
 
