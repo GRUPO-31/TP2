@@ -11,6 +11,7 @@ import './index.css';
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   // Efecto global para el fondo animado Matrix en Canvas
   useEffect(() => {
@@ -71,11 +72,11 @@ export default function App() {
         pointerEvents: 'none'
       }}></canvas>
 
-      <div className="app-layout">
-        <button className="mobile-toggle" onClick={() => setSidebarOpen(!sidebarOpen)} aria-label="Menú">
+      <div className={`app-layout${sidebarCollapsed ? ' sidebar-collapsed' : ''}`}>
+        <button className="mobile-toggle" onClick={() => setSidebarOpen(!sidebarOpen)} title={sidebarOpen ? 'Cerrar menú' : 'Abrir menú'} aria-label={sidebarOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={sidebarOpen} aria-controls="main-sidebar">
           <span></span><span></span><span></span>
         </button>
-        <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+        <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
