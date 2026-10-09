@@ -21,6 +21,7 @@ export default function ApiPublica() {
   const [ultimaActualizacion, setUltimaActualizacion] = useState(null);
   const [modalCrypto, setModalCrypto] = useState(null);
   const [selectedCryptoId, setSelectedCryptoId] = useState('');
+  const [chartInterval, setChartInterval] = useState(1);
   const selectedCrypto = assets.find((coin) => coin.id === selectedCryptoId) || assets[0];
   const chartCoinId = selectedCrypto?.id;
   const [history, setHistory] = useState({ coinId: null, data: [], loading: false, error: null });
@@ -140,9 +141,30 @@ export default function ApiPublica() {
                 </div>
 
                 <div style={{zIndex: 3, position: 'relative', marginBottom: '15px'}}>
-                  <h3 style={{fontSize: '1.2rem', color: '#fff', marginBottom: '8px', fontFamily: 'var(--font-code)'}}>{coin.name}</h3>
+                  <div className="crypto-card-heading">
+                    <span className="crypto-icon">
+                      <span aria-hidden="true">{coin.symbol.toUpperCase().slice(0, 3)}</span>
+                      {coin.image && (
+                        <img
+                          src={coin.image}
+                          alt={`Ícono de ${coin.name}`}
+                          width="40"
+                          height="40"
+                          loading="lazy"
+                          onError={(event) => { event.currentTarget.style.display = 'none'; }}
+                        />
+                      )}
+                    </span>
+                    <h3 style={{fontSize: '1.2rem', color: '#fff', marginBottom: 0, fontFamily: 'var(--font-code)'}}>{coin.name}</h3>
+                  </div>
                   <div style={{fontSize: '1.4rem', color: 'var(--green)', fontFamily: 'var(--font-code)', fontWeight: 'bold', textShadow: '0 0 10px rgba(0,255,102,0.3)'}}>
                     {formatPrice(coin.current_price)}
+                  </div>
+                  <div style={{marginTop: '8px', textAlign: 'right', fontFamily: 'var(--font-code)'}}>
+                    <span style={{display: 'block', fontSize: '0.55rem', color: 'var(--text-muted)', marginBottom: '3px'}}>CAPITALIZACIÓN DE MERCADO</span>
+                    <strong style={{fontSize: '0.75rem', fontWeight: 400, color: 'var(--text-muted)'}} title={formatPrice(coin.market_cap)}>
+                      {formatCompact(coin.market_cap)} USD
+                    </strong>
                   </div>
                 </div>
 
@@ -170,12 +192,25 @@ export default function ApiPublica() {
           {assets.length === 0 && <option value="">Sin activos disponibles</option>}
           {assets.map((coin) => <option key={coin.id} value={coin.id}>{coin.name} ({coin.symbol.toUpperCase()})</option>)}
         </select>
+        <div role="group" aria-label="Intervalo del gráfico" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '20px' }}>
+          {[{ hours: 1, label: '1 hora' }, { hours: 4, label: '4 horas' }, { hours: 24, label: '1 día' }].map(({ hours, label }) => (
+            <button
+              key={hours}
+              type="button"
+              className={`btn${chartInterval === hours ? ' btn-primary' : ''}`}
+              aria-pressed={chartInterval === hours}
+              onClick={() => setChartInterval(hours)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
         {(cargando && assets.length === 0) || (chartCoinId && (history.loading || history.coinId !== chartCoinId)) ? (
           <p role="status" style={{ color: 'var(--text-muted)' }}>Cargando historial de precios...</p>
         ) : history.error ? (
           <p role="alert" style={{ color: '#ff4444' }}>{history.error}</p>
         ) : (
-          <CryptoChart data={history.data} name={selectedCrypto?.name || ''} />
+          <CryptoChart data={history.data} name={selectedCrypto?.name || ''} intervalHours={chartInterval} />
         )}
       </section>
 
@@ -241,6 +276,38 @@ export default function ApiPublica() {
 
       {/* ESTILOS DE LAS TARJETAS Y EFECTOS */}
       <style>{`
+        .crypto-card-heading {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 12px;
+        }
+        .crypto-card-heading h3 {
+          min-width: 0;
+          overflow-wrap: anywhere;
+        }
+        .crypto-icon {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          flex-shrink: 0;
+          border-radius: 50%;
+          background: #020d07;
+          color: var(--cyan);
+          font-family: var(--font-code);
+          font-size: 0.7rem;
+          box-shadow: 0 0 12px rgba(0, 255, 102, 0.15);
+        }
+        .crypto-icon img {
+          position: absolute;
+          inset: 0;
+          object-fit: contain;
+          border-radius: 50%;
+          background: #020d07;
+        }
         .crypto-card-vfx {
           transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
