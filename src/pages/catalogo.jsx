@@ -108,6 +108,24 @@ export default function Catalogo() {
               {cat}
             </button>
           ))}
+          {/* Botón para restablecer búsqueda y filtros */}
+          <button
+              onClick={() => {
+                setBusqueda('');
+                setCategoriaSeleccionada('TODAS');
+                setOrden('id');
+              }}
+              className="btn"
+              style={{
+                fontSize: '0.7rem',
+                padding: '8px 12px',
+                color: 'var(--cyan)',
+                borderColor: 'var(--cyan)',
+                background: 'rgba(0, 255, 255, 0.05)'
+              }}
+            >
+              [  LIMPIAR FILTROS ]
+          </button>
         </div>
       </div>
 
