@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const integrantesData = [
   {
@@ -96,12 +97,76 @@ const integrantesData = [
 ];
 
 export default function Equipo() {
+  const location = useLocation();
   const [selectedOp, setSelectedOp] = useState(null);
   const [terminalOutput, setTerminalOutput] = useState('Esperando orden de diagnóstico táctico...');
-
+  const [pasoEscaneo, setPasoEscaneo] = useState(-1);
+  const ejecutando = pasoEscaneo >= 0 && pasoEscaneo < 4;
+  // Reiniciar el perfil al navegar nuevamente a Equipo
+  useEffect(() => {
+    setSelectedOp(null);
+    setPasoEscaneo(-1);
+    setTerminalOutput('Esperando orden de diagnóstico táctico...');
+  }, [location.key]);
   const ejecutarTest = (nombre) => {
-    setTerminalOutput(`> Conectando con núcleo de ${nombre}...\n> Analizando flujos de datos y memoria... [OK]\n> ESTADO: SISTEMA 100% OPERATIVO Y SINCRONIZADO.`);
-  };
+      if (ejecutando) return;
+
+      setTerminalOutput(
+        `> INICIANDO ESCANEO DEMOSTRATIVO DE ${nombre}...`
+      );
+      setPasoEscaneo(0);
+    };
+
+    useEffect(() => {
+      if (pasoEscaneo < 0 || pasoEscaneo >= 4) return;
+
+      const mensajesPorPerfil = {
+        diego: [
+          '> QA_SCAN: Validando integridad de datos... [OK]',
+          '> Comprobando rendimiento del sistema... [OK]',
+          '> Verificando seguridad y compatibilidad... [OK]',
+          '> QUALITY_CHECK // DIAGNÓSTICO DEMOSTRATIVO FINALIZADO'
+        ],
+
+        brian: [
+          '> FULLSTACK_BUILD: Inicializando entorno... [OK]',
+          '> Compilando componentes de React... [OK]',
+          '> Comprobando integración de APIs REST... [OK]',
+          '> BUILD_SUCCESS // SIMULACIÓN FINALIZADA'
+        ],
+
+        sergio: [
+          '> QA_SCAN: Verificando estructura HTML... [OK]',
+          '> Analizando estilos CSS y diseño responsive... [OK]',
+          '> Revisando JavaScript y errores de interfaz... [OK]',
+          '> QUALITY_CHECK_PASSED // SIMULACIÓN FINALIZADA'
+        ],
+
+        cristian: [
+          '> IA_CORE: Inicializando módulo de inteligencia artificial...',
+          '> Simulando procesamiento de datos con Python...',
+          '> Analizando procesos de automatización... [OK]',
+          '> AI_SYSTEM_READY // DEMOSTRACIÓN FINALIZADA'
+        ]
+      };
+
+      const mensajes = mensajesPorPerfil[selectedOp?.id] || [];
+
+      const temporizador = setTimeout(() => {
+        setTerminalOutput(
+          anterior => anterior + '\n' + mensajes[pasoEscaneo]
+        );
+        setPasoEscaneo(anterior => anterior + 1);
+      }, 850);
+
+      return () => clearTimeout(temporizador);
+    }, [pasoEscaneo, selectedOp?.id]);
+
+    const abrirPerfil = (op) => {
+      setSelectedOp(op);
+      setPasoEscaneo(-1);
+      setTerminalOutput('Esperando orden de diagnóstico táctico...');
+    };
 
   return (
     <div className="cyber-frame">
@@ -132,7 +197,7 @@ export default function Equipo() {
               <div 
                 className="vfx-frame-container"
                 style={{position: 'relative', height: '190px', background: '#000', border: '1px solid var(--border-dim)', cursor: 'pointer', overflow: 'hidden'}}
-                onClick={() => setSelectedOp(op)}
+                onClick={() => abrirPerfil(op)}
               >
                 <div style={{position: 'absolute', inset: '8px', border: '1px dashed rgba(0, 255, 102, 0.25)', pointerEvents: 'none', zIndex: 3}}></div>
                 <div className="vfx-crt-noise"></div>
@@ -168,7 +233,7 @@ export default function Equipo() {
                 </div>
               </div>
 
-              <button className="btn btn-primary" style={{width: '100%', justifyContent: 'center'}} onClick={() => setSelectedOp(op)}>
+              <button className="btn btn-primary" style={{width: '100%', justifyContent: 'center'}} onClick={() => abrirPerfil(op)}>
                 [ + ] TARJETA PERSONAL &gt;
               </button>
             </article>
