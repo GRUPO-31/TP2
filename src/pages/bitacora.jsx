@@ -6,7 +6,10 @@ const bitacoraData = [
   { fecha: '07/10/2026', hito: 'Migración a React y configuración de React Router.', estado: 'OK', desc: 'Estructuración inicial con Vite, instalación de dependencias y diseño de sidebar compartida.' },
   { fecha: '08/10/2026', hito: 'Desarrollo de Portada y Perfiles Interactivos.', estado: 'OK', desc: 'Construcción de componentes reutilizables para los perfiles de los operativos.' },
   { fecha: '09/10/2026', hito: 'Implementación de Datos Local JSON y Filtros.', estado: 'OK', desc: 'Creación del recurso con 20 registros, buscador en tiempo real y selector de categorías.' },
-  { fecha: '10/10/2026', hito: 'Consumo de API Pública y Manejo de Estados.', estado: 'OK', desc: 'Integración con API CoinCap incorporando estados de carga y manejo de errores.' }
+  { fecha: '10/10/2026', hito: 'Consumo de API Pública y Manejo de Estados.', estado: 'OK', desc: 'Integración con API CoinCap incorporando estados de carga y manejo de errores.' },
+  { fecha: '15/10/2026', hito: 'Optimización de filtros y estado vacío en Datos Locales.', estado: 'FIX', desc: 'Implementación del mensaje de contingencia ante búsquedas sin coincidencia y botón para restablecer parámetros a la lista completa.' },
+  { fecha: '18/10/2026', hito: 'Control de recarga directa y configuración de Vercel.', estado: 'FIX', desc: 'Configuración de reescrituras en vercel.json para evitar errores 404 al refrescar rutas directas de React Router en producción.' },
+  { fecha: '20/10/2026', hito: 'Auditoría integral de accesibilidad y documentación README.', estado: 'OK', desc: 'Verificación de navegación sin depender del botón Atrás, comprobación de perfiles sin sesión y declaración detallada del uso de IA.' }
 ];
 
 export default function Bitacora() {
