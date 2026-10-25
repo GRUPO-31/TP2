@@ -1,21 +1,35 @@
 # Sintaxia // Proyecto React en Equipo (TP2)
 
-Aplicación web desarrollada en React para la gestión y presentación de la arquitectura del equipo, integrando componentes reutilizables, navegación con React Router, consumo de bases de datos locales en JSON y APIs públicas.
+Aplicación web desarrollada en React para la gestión y presentación del equipo, integrando componentes reutilizables, navegación con React Router, datos locales en formato JSON con filtros dinámicos, consumo de API pública y árbol de renderizado.
 
 ## 🔗 Enlace de Deploy
-* **Vercel:** [https://tu-proyecto.vercel.app](https://tu-proyecto.vercel.app)
+- **Producción (Vercel):** [https://tp-2-five.vercel.app/](https://tp-2-five.vercel.app/)
 
-## 👥 Integrantes del Equipo y Repositorios
-* **Diego Rodriguez** - Lead Architect | [GitHub](https://github.com/diegojrodriguez/landing-personalDJR)
-* **Brian Lavandera** - Fullstack Dev | [GitHub](https://github.com/brianlavandera3/pfo1-Brian-David-Lavandera-2-A)
-* **Sergio Vargas** - QA Engineer | [GitHub](https://github.com/SergioVargas101/pfo1-landing-portfolio)
-* **Cristian Villagra** - IA Engineer | [GitHub](https://github.com/Crrisst/PfoFrontend)
+---
+
+## 👥 Integrantes del Equipo
+- **Diego Rodriguez** — Lead Architect | [Perfil de GitHub](https://github.com/diegojrodriguez)
+- **Brian Lavandera** — Fullstack Dev | [Perfil de GitHub](https://github.com/brianlavandera3)
+- **Sergio Vargas** — QA Engineer | [Perfil de GitHub](https://github.com/SergioVargas101)
+- **Cristian Villagra** — AI Engineer | [Perfil de GitHub](https://github.com/Crrisst)
+
+---
+
+## 🛠️ Tecnologías y Librerías
+- **Framework / Runtime:** React + Vite
+- **Navegación:** React Router DOM
+- **Estilos:** CSS Modular / Variables temáticas (Cyberpunk HUD)
+- **API Externa:** CoinCap API pública
+
+---
 
 ## 🤖 Declaración de Uso de Inteligencia Artificial (Criterio 15)
-* **Aplicación de IA utilizada:** ChatGPT / Gemini como asistentes de programación y revisión de código.
-* **Modelo empleado:** LLM avanzado para optimización de componentes y estructuración de React Router.
-* **Distribución de tareas por integrante:**
-  * **Diego:** Asistencia de IA para diseño lógico de backend y estructuración de pruebas en perfiles.
-  * **Brian:** Uso de IA para la configuración de rutas en React Router y sincronización con componentes.
-  * **Sergio:** Asistencia de IA para validación de estados y depuración de errores en componentes.
-  * **Cristian:** Integración de prompts para generación de componentes interactivos y optimización de flujos.
+
+Para el desarrollo del proyecto se incorporaron herramientas de IA generativa discriminadas por integrante, aplicación, modelo y tarea:
+
+| Integrante | Aplicación / Plataforma | Modelo Empleado | Tarea / Contenido Específico |
+| :--- | :--- | :--- | :--- |
+| **Diego Rodriguez** | OpenAI ChatGPT / Anthropic Claude | GPT-4o / Claude 3.5 Sonnet | Estructuración modular de componentes, lógica de la Bitácora y árbol de renderizado interactivo. |
+| **Brian Lavandera** | OpenAI ChatGPT | GPT-4o | Configuración de rutas protegidas/dinámicas en React Router DOM y armado de la Sidebar responsiva. |
+| **Sergio Vargas** | Google Gemini | Gemini 1.5 Pro | Validación de casos límite en filtros de búsqueda, manejo de estados de carga y errores de la API. |
+| **Cristian Villagra** | Cursor / OpenAI ChatGPT | Claude 3.5 Sonnet / GPT-4o | Generación de prompts para estructura de datos JSON (20 registros) y estilización con estética Cyberpunk. |
