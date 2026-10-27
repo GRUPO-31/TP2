@@ -14,11 +14,23 @@ export default function Catalogo() {
     return ['TODAS', ...new Set(cats)];
   }, []);
 
-  // Filtrado y Ordenamiento
+  // Filtrado y Ordenamiento (Soporta búsqueda por ID y Texto)
   const recursosFiltrados = useMemo(() => {
     let resultado = (recursosData || []).filter(item => {
-      const matchTexto = (item.titulo || '').toLowerCase().includes(busqueda.toLowerCase()) ||
-                         (item.descripcion || '').toLowerCase().includes(busqueda.toLowerCase());
+      const query = busqueda.toLowerCase().trim();
+      
+      const titulo = (item.titulo || '').toLowerCase();
+      const descripcion = (item.descripcion || '').toLowerCase();
+      const idStr = String(item.id || '').toLowerCase();
+      const idFormatted = `id_0${item.id}`.toLowerCase();
+      const idFormattedShort = `id_${item.id}`.toLowerCase();
+
+      const matchTexto = titulo.includes(query) || 
+                         descripcion.includes(query) || 
+                         idStr === query || 
+                         idFormatted.includes(query) || 
+                         idFormattedShort.includes(query);
+
       const matchCat = categoriaSeleccionada === 'TODAS' || item.categoria === categoriaSeleccionada;
       return matchTexto && matchCat;
     });
@@ -61,7 +73,7 @@ export default function Catalogo() {
             <span style={{position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--green)', fontFamily: 'var(--font-code)'}}>&gt;</span>
             <input 
               type="text" 
-              placeholder="Buscar por título o descripción..." 
+              placeholder="Buscar por ID (ej. 1 o ID_01) o descripción..." 
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
               style={{
@@ -108,7 +120,6 @@ export default function Catalogo() {
               {cat}
             </button>
           ))}
-          {/* Botón para restablecer búsqueda y filtros */}
           <button
               onClick={() => {
                 setBusqueda('');
@@ -124,7 +135,7 @@ export default function Catalogo() {
                 background: 'rgba(0, 255, 255, 0.05)'
               }}
             >
-              [  LIMPIAR FILTROS ]
+              [ LIMPIAR FILTROS ]
           </button>
         </div>
       </div>
@@ -134,7 +145,7 @@ export default function Catalogo() {
         <span className="blink">[TELEMETRÍA_ACTIVA: OK]</span>
       </div>
 
-      {/* Grilla de Recursos con VFX */}
+      {/* Grilla de Recursos con Láser Único Normal y VFX */}
       {recursosFiltrados.length === 0 ? (
         <div style={{padding: '50px', textAlign: 'center', fontFamily: 'var(--font-code)', color: '#ff4444', border: '1px dashed #ff4444', background: 'rgba(255,0,0,0.05)'}}>
           &gt; ERROR_404: No se encontraron registros coincidentes en la base de datos.
@@ -151,6 +162,7 @@ export default function Catalogo() {
                 style={{position: 'relative', overflow: 'hidden', cursor: 'pointer'}}
                 onClick={() => abrirModal(item)}
               >
+                <div className="matrix-binary-bg"></div>
                 <div className="crt-noise-overlay"></div>
                 <div className="scanner-beam-vfx"></div>
 
@@ -165,7 +177,7 @@ export default function Catalogo() {
                 </div>
 
                 <div style={{zIndex: 3, position: 'relative', marginBottom: '15px'}}>
-                  <h3 style={{fontSize: '1.1rem', color: '#fff', marginBottom: '8px', fontFamily: 'var(--font-code)'}}>{item.titulo}</h3>
+                  <h3 className="glitch-text" style={{fontSize: '1.1rem', color: '#fff', marginBottom: '8px', fontFamily: 'var(--font-code)'}}>{item.titulo}</h3>
                   <p style={{fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: '1.4'}}>{item.descripcion}</p>
                 </div>
 
@@ -192,13 +204,13 @@ export default function Catalogo() {
           zIndex: 1000,
           padding: '20px'
         }}>
-          <div className="cyber-frame" style={{
+          <div className="cyber-frame matrix-opened-container" style={{
             background: '#020d07',
             border: '2px solid var(--green)',
             width: '100%',
             maxWidth: '600px',
             position: 'relative',
-            boxShadow: '0 0 40px rgba(0, 255, 102, 0.3)'
+            boxShadow: '0 0 40px var(--green-glow)'
           }}>
             <div className="corner-hud tl"></div><div className="corner-hud tr"></div>
             <div className="corner-hud bl"></div><div className="corner-hud br"></div>
@@ -241,49 +253,90 @@ export default function Catalogo() {
         </div>
       )}
 
-      {/* Estilos CSS específicos del Catálogo */}
+      {/* Estilos CSS con Láser Único Normal */}
       <style>{`
         .cyber-input:focus {
           border-color: var(--green) !important;
-          box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+          box-shadow: 0 0 15px var(--green-glow);
         }
         .catalog-card-vfx {
-          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           display: flex;
           flex-direction: column;
           justify-content: space-between;
         }
         .catalog-card-vfx:hover {
           border-color: var(--green);
-          box-shadow: 0 0 25px rgba(0, 255, 102, 0.3), inset 0 0 15px rgba(0, 255, 102, 0.08);
-          transform: translateY(-4px);
+          box-shadow: 0 0 35px var(--green-glow), inset 0 0 20px var(--green-dim);
+          transform: translateY(-5px) scale(1.01);
         }
-        .scanner-beam-vfx {
-          position: absolute;
-          top: -100%;
-          left: 0;
-          width: 100%;
-          height: 4px;
-          background: linear-gradient(180deg, rgba(0, 255, 102, 0.9), transparent);
-          box-shadow: 0 0 10px var(--green);
-          z-index: 2;
-          pointer-events: none;
-        }
-        .catalog-card-vfx:hover .scanner-beam-vfx {
-          animation: scanCatalogVfx 1.5s infinite linear;
-        }
-        .crt-noise-overlay {
+
+        .matrix-binary-bg {
           position: absolute;
           inset: 0;
-          background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.015), rgba(0, 0, 255, 0.04));
-          background-size: 100% 3px, 3px 100%;
-          opacity: 0.4;
+          background: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.95)), 
+                      repeating-linear-gradient(0deg, transparent, transparent 4px, var(--green-dim) 4px, var(--green-dim) 5px);
+          opacity: 0;
+          transition: opacity 0.4s ease;
           pointer-events: none;
           z-index: 1;
         }
+        .catalog-card-vfx:hover .matrix-binary-bg {
+          opacity: 0.35;
+        }
+
+        /* Láser único normal horizontal */
+        .scanner-beam-vfx {
+          position: absolute;
+          top: -120%;
+          left: 0;
+          width: 100%;
+          height: 4px;
+          background: linear-gradient(180deg, #ffffff, var(--green));
+          box-shadow: 0 0 15px var(--green), 0 0 30px var(--green-glow);
+          z-index: 3;
+          pointer-events: none;
+        }
+        .catalog-card-vfx:hover .scanner-beam-vfx {
+          animation: scanCatalogVfx 1.3s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .crt-noise-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.015), rgba(0, 0, 255, 0.04));
+          background-size: 100% 3px, 3px 100%;
+          opacity: 0.5;
+          pointer-events: none;
+          z-index: 2;
+        }
+
+        .matrix-opened-container {
+          box-shadow: 0 0 50px var(--green-glow), inset 0 0 30px var(--green-dim);
+          animation: containerPulse 2.5s infinite alternate;
+        }
+
+        .glitch-text {
+          position: relative;
+        }
+        .catalog-card-vfx:hover .glitch-text {
+          animation: textGlitch 0.25s infinite alternate;
+        }
+
         @keyframes scanCatalogVfx {
           0% { top: -20%; }
           100% { top: 120%; }
+        }
+
+        @keyframes containerPulse {
+          0% { border-color: var(--green); box-shadow: 0 0 30px var(--green-glow); }
+          100% { border-color: var(--cyan); box-shadow: 0 0 55px var(--green-glow); }
+        }
+
+        @keyframes textGlitch {
+          0% { text-shadow: 2px 0 var(--green), -2px 0 #fff; transform: translate(0); }
+          50% { text-shadow: -2px 0 var(--green), 2px 0 var(--cyan); transform: translate(-1px, 1px); }
+          100% { text-shadow: 1px 2px var(--green), -1px -2px #fff; transform: translate(1px, -1px); }
         }
       `}</style>
     </div>

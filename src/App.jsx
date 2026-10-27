@@ -1,19 +1,105 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Sidebar from './components/sidebar';
-import Home from './pages/home';
-import Equipo from './pages/equipo';
-import Catalogo from './pages/catalogo';
-import ApiPublica from './pages/apiPublica';
-import ArbolComponentes from './pages/arbolComponentes';
-import Bitacora from './pages/bitacora';
 import './index.css';
+
+// Lazy loading para optimizar rendimiento de páginas
+const Home = lazy(() => import('./pages/home'));
+const Equipo = lazy(() => import('./pages/equipo'));
+const Catalogo = lazy(() => import('./pages/catalogo'));
+const ApiPublica = lazy(() => import('./pages/apiPublica'));
+const ArbolComponentes = lazy(() => import('./pages/arbolComponentes'));
+const Bitacora = lazy(() => import('./pages/bitacora'));
+
+// Componente de Carga Temporal (Suspense Fallback)
+const CyberLoader = () => (
+  <div style={{
+    minHeight: '60vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'var(--font-code)',
+    color: 'var(--green)',
+    textAlign: 'center'
+  }}>
+    <div className="blink" style={{ fontSize: '1.2rem', marginBottom: '12px', letterSpacing: '2px' }}>
+      &gt; DESCONECTANDO ENLACE NEURONAL...
+    </div>
+    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+      REDIRECCIONANDO FLUJO DE DATOS A SIÓN [100%]
+    </div>
+  </div>
+);
+
+// Componente para aplicar el Efecto de Desconexión adaptado según el tema activo
+function AnimatedRoutes() {
+  const location = useLocation();
+  const [animating, setAnimating] = useState(false);
+  const [isRedTheme, setIsRedTheme] = useState(false);
+
+  useEffect(() => {
+    // Detectar si el modo crítico (rojo) está activo en el body
+    setIsRedTheme(document.body.classList.contains('theme-red'));
+    setAnimating(true);
+    
+    const timer = setTimeout(() => {
+      setAnimating(false);
+    }, 650); // Duración exacta de la animación
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
+  const transitionClass = animating 
+    ? (isRedTheme ? 'zion-disconnect-transition zion-red-glitch-transition' : 'zion-disconnect-transition')
+    : '';
+
+  return (
+    <div style={{ width: '100%', minHeight: '100%', position: 'relative' }} className={transitionClass}>
+      <Suspense fallback={<CyberLoader />}>
+        <Routes location={location}>
+          <Route path="/" element={<Home />} />
+          <Route path="/equipo" element={<Equipo />} />
+          <Route path="/catalogo" element={<Catalogo />} />
+          <Route path="/api" element={<ApiPublica />} />
+          <Route path="/arbol" element={<ArbolComponentes />} />
+          <Route path="/bitacora" element={<Bitacora />} />
+        </Routes>
+      </Suspense>
+    </div>
+  );
+}
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  // Efecto global para el fondo animado Matrix en Canvas
+  // Persistencia de Tema en LocalStorage (Verde / Rojo Matrix)
+  const [themeRed, setThemeRed] = useState(() => {
+    return localStorage.getItem('sintaxia_theme') === 'red';
+  });
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setThemeRed(localStorage.getItem('sintaxia_theme') === 'red');
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    
+    const intervalCheck = setInterval(() => {
+      const isRedBody = document.body.classList.contains('theme-red');
+      if (isRedBody !== themeRed) {
+        setThemeRed(isRedBody);
+      }
+    }, 100);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      clearInterval(intervalCheck);
+    };
+  }, [themeRed]);
+
+  // Efecto global para el fondo animado Matrix en Canvas con purga limpia de color
   useEffect(() => {
     const canvas = document.getElementById("matrix-canvas");
     if (!canvas) return;
@@ -21,15 +107,18 @@ export default function App() {
     const ctx = canvas.getContext("2d");
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
-    const chars = "01100101 01110110 01110011 01110001 01110101 01100001 01100100 Sintaxia";
+    const chars = "01100101 01110110 01110011 01110001 01110101 01100101 01100100 Sintaxia";
     const fontSize = 14;
     let columns = Math.floor(width / fontSize);
     let drops = Array(columns).fill(1);
 
+    ctx.clearRect(0, 0, width, height);
+
     function drawMatrix() {
-      ctx.fillStyle = "rgba(3, 8, 6, 0.08)";
+      ctx.fillStyle = themeRed ? "rgba(13, 2, 3, 0.2)" : "rgba(3, 8, 6, 0.2)";
       ctx.fillRect(0, 0, width, height);
-      ctx.fillStyle = "#00ff66";
+      
+      ctx.fillStyle = themeRed ? "#ff1e38" : "#00ff66";
       ctx.font = `${fontSize}px 'JetBrains Mono', monospace`;
 
       for (let i = 0; i < drops.length; i++) {
@@ -57,18 +146,18 @@ export default function App() {
       clearInterval(interval);
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [themeRed]);
 
   return (
     <BrowserRouter>
-      {/* Canvas global del fondo Matrix */}
+      {/* Canvas global del fondo Matrix con reseteo limpio */}
       <canvas id="matrix-canvas" style={{
         position: 'fixed',
         inset: 0,
         width: '100%',
         height: '100%',
         zIndex: -2,
-        opacity: 0.25,
+        opacity: 0.28,
         pointerEvents: 'none'
       }}></canvas>
 
@@ -77,15 +166,9 @@ export default function App() {
           <span></span><span></span><span></span>
         </button>
         <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+        
         <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/equipo" element={<Equipo />} />
-            <Route path="/catalogo" element={<Catalogo />} />
-            <Route path="/api" element={<ApiPublica />} />
-            <Route path="/arbol" element={<ArbolComponentes />} />
-            <Route path="/bitacora" element={<Bitacora />} />
-          </Routes>
+          <AnimatedRoutes />
         </main>
       </div>
     </BrowserRouter>

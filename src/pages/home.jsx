@@ -9,7 +9,7 @@ export default function Home() {
 
   // Efecto Parallax interactivo sutil (sigue al mouse)
   const handleMouseMove = (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 15; // Suavizado para no marear
+    const x = (e.clientX / window.innerWidth - 0.5) * 15;
     const y = (e.clientY / window.innerHeight - 0.5) * 15;
     setMousePos({ x, y });
   };
@@ -41,7 +41,6 @@ export default function Home() {
         alignItems: 'center',
         justifyContent: 'center',
         perspective: '1200px',
-        /* NOTA: Eliminamos el fondo sólido para que se vea el Canvas global de App.jsx */
       }}
     >
       {/* Reactor de Anillos Holográficos (Fondo 3D) */}
@@ -98,15 +97,13 @@ export default function Home() {
         <strong>100% ONLINE</strong>
       </div>
 
-      {/* ESTILOS CSS INTEGRADOS */}
+      {/* ESTILOS CSS ADAPTADOS A VARIABLES GLOBALES */}
       <style>{`
         .home-integrated {
-          /* Un sutil degradado transparente que se funde con el resto de la página */
-          background: radial-gradient(circle at center, rgba(0,255,102,0.03) 0%, transparent 60%);
+          background: radial-gradient(circle at center, var(--green-dim) 0%, transparent 60%);
           width: 100%;
         }
 
-        /* REACTOR HOLOGRÁFICO (Se mezcla con el fondo) */
         .hologram-reactor {
           position: absolute;
           top: 50%; left: 50%;
@@ -116,35 +113,34 @@ export default function Home() {
           z-index: 1;
           pointer-events: none;
           transition: transform 0.15s ease-out;
-          opacity: 0.5; /* Más sutil para no ahogar la pantalla */
+          opacity: 0.5;
         }
 
         .reactor-ring {
           position: absolute;
           inset: 0;
           border-radius: 50%;
-          border: 1px solid rgba(0, 255, 102, 0.05);
+          border: 1px solid var(--border-dim);
         }
 
         .ring-1 {
-          border-top: 2px solid rgba(0, 255, 102, 0.6);
-          border-bottom: 2px solid rgba(0, 229, 255, 0.4);
+          border-top: 2px solid var(--green);
+          border-bottom: 2px solid var(--cyan);
           animation: spin3D 15s infinite linear;
-          box-shadow: 0 0 30px rgba(0,255,102,0.1);
+          box-shadow: 0 0 30px var(--green-dim);
         }
         .ring-2 {
           inset: 40px;
-          border-left: 2px dashed rgba(0, 255, 102, 0.5);
-          border-right: 2px dashed rgba(0, 229, 255, 0.3);
+          border-left: 2px dashed var(--green);
+          border-right: 2px dashed var(--cyan);
           animation: spin3DReverse 10s infinite linear;
         }
         .ring-3 {
           inset: 90px;
-          border: 2px dotted rgba(0,229,255,0.2);
+          border: 2px dotted var(--cyan);
           animation: spin3D 25s infinite linear;
         }
 
-        /* PANEL CRISTAL (GLASSMORPHISM) */
         .glass-panel {
           position: relative;
           z-index: 10;
@@ -152,20 +148,19 @@ export default function Home() {
           padding: 40px;
           max-width: 850px;
           width: 90%;
-          /* Este es el secreto de la integración: fondo semi-transparente y desenfoque */
-          background: rgba(1, 12, 6, 0.4);
+          background: var(--bg-card);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
-          border: 1px solid rgba(0, 255, 102, 0.15);
-          box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 255, 102, 0.05);
+          border: 1px solid var(--border-dim);
+          box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 20px var(--green-dim);
           border-radius: 4px;
           transition: transform 0.1s ease-out;
         }
 
         .status-badge {
           display: inline-block;
-          background: rgba(0, 255, 102, 0.08);
-          border: 1px solid rgba(0, 255, 102, 0.3);
+          background: var(--green-dim);
+          border: 1px solid var(--border-dim);
           padding: 6px 16px;
           font-family: var(--font-code);
           font-size: 0.75rem;
@@ -190,7 +185,7 @@ export default function Home() {
           margin: 0 0 20px 0;
           letter-spacing: 10px;
           font-weight: 900;
-          text-shadow: 0 0 25px rgba(0,255,102,0.5), 3px 3px 0px rgba(0,229,255,0.4);
+          text-shadow: 0 0 25px var(--green-glow), 3px 3px 0px var(--cyan);
         }
 
         .description-box {
@@ -205,7 +200,6 @@ export default function Home() {
           margin-bottom: 15px;
         }
 
-        /* BOTONES GEOMÉTRICOS ASIMÉTRICOS */
         .action-panels {
           display: flex;
           gap: 20px;
@@ -229,7 +223,7 @@ export default function Home() {
         .cyber-btn-angled.primary {
           background: var(--green);
           color: #000;
-          box-shadow: 0 0 15px rgba(0,255,102,0.3);
+          box-shadow: 0 0 15px var(--green-glow);
         }
         .cyber-btn-angled.primary:hover {
           background: #fff;
@@ -237,7 +231,7 @@ export default function Home() {
         }
 
         .cyber-btn-angled.secondary {
-          background: rgba(0,229,255,0.08);
+          background: var(--green-dim);
           color: var(--cyan);
           border-left: 2px solid var(--cyan);
           border-right: 2px solid var(--cyan);
@@ -247,10 +241,9 @@ export default function Home() {
           transform: translateY(-2px);
         }
 
-        /* MÉTRICAS FLOTANTES */
         .floating-metric {
           position: absolute;
-          background: rgba(0, 10, 5, 0.4);
+          background: var(--bg-card);
           border-left: 2px solid var(--green);
           padding: 10px 15px;
           font-family: var(--font-code);
@@ -268,7 +261,6 @@ export default function Home() {
         .top-left strong { color: var(--cyan); }
         .bottom-right { bottom: 5%; right: 2%; }
 
-        /* ANIMACIONES */
         @keyframes spin3D {
           0% { transform: rotateX(65deg) rotateZ(0deg); }
           100% { transform: rotateX(65deg) rotateZ(360deg); }
@@ -281,7 +273,6 @@ export default function Home() {
           50% { opacity: 0; }
         }
       `}</style>
-
     </div>
   );
 }
