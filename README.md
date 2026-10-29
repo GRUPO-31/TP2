@@ -2,6 +2,15 @@
 
 Aplicación web desarrollada en React para la gestión y presentación del equipo, integrando componentes reutilizables, navegación con React Router, datos locales en formato JSON con filtros dinámicos, consumo de API pública y árbol de renderizado.
 
+## 📋 Índice
+1. [Enlace de Deploy](#-enlace-de-deploy)
+2. [Integrantes del Equipo](#-integrantes-del-equipo)
+3. [Tecnologías y Librerías](#️-tecnologías-y-librerías)
+4. [Pantallas del Proyecto](#-pantallas-del-proyecto)
+5. [Declaración de Uso de Inteligencia Artificial](#-declaración-de-uso-de-inteligencia-artificial-criterio-15)
+
+---
+
 ## 🔗 Enlace de Deploy
 - **Producción (Vercel):** [https://tp-2-five.vercel.app/](https://tp-2-five.vercel.app/)
 
@@ -23,7 +32,7 @@ Aplicación web desarrollada en React para la gestión y presentación del equip
 
 ---
 
-## 📸 Índice y Pantallas del Proyecto
+## 📸 Pantallas del Proyecto
 
 ### 1. Portada
 ![Captura de la Portada](https://github.com/GRUPO-31/TP2/raw/main/public/Imagenes/1.png)  
@@ -49,6 +58,7 @@ Esquema visual interactivo que muestra la estructura jerárquica y la organizaci
 ![Captura de Bitácora](https://github.com/GRUPO-31/TP2/raw/main/public/Imagenes/6.png)  
 Registro cronológico del desarrollo del proyecto, hitos y correcciones organizados mediante paneles desplegables.
 
+---
 
 ## 🤖 Declaración de Uso de Inteligencia Artificial (Criterio 15)
 
