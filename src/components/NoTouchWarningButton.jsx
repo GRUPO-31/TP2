@@ -34,19 +34,19 @@ export default function NoTouchWarningButton() {
         className={`notouch-tactical-btn ${isRed ? 'mode-chaos-red' : 'mode-stable-green'}`}
         title="ADVERTENCIA: PROTOCOLO DE CAOS"
       >
-        {/* Esquinas HUD Geométricas */}
+
         <span className="hud-corner tl"></span>
         <span className="hud-corner tr"></span>
         <span className="hud-corner bl"></span>
         <span className="hud-corner br"></span>
 
-        {/* Cámara de Advertencia */}
+  
         <div className="warning-icon-chamber">
           <div className="laser-scan-bar"></div>
           <span className="warning-symbol">⚠</span>
         </div>
 
-        {/* Panel de Texto Táctico con Advertencia NO TOCAR */}
+  
         <div className="tactical-text-box">
           <span className="tactical-subtitle">// SEGURIDAD</span>
           <span className="tactical-title">

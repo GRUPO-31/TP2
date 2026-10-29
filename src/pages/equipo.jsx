@@ -159,7 +159,7 @@ export default function Equipo() {
 
   const abrirPerfil = (op) => {
     setScanningId(op.id);
-    // Efecto de escaneo láser fluido antes de desplegar el perfil limpio
+    
     setTimeout(() => {
       setSelectedOp(op);
       setPasoEscaneo(-1);
@@ -170,7 +170,7 @@ export default function Equipo() {
 
   return (
     <div className="cyber-frame" style={{ position: 'relative', overflow: 'hidden' }}>
-      {/* HUD Corners Holográficos */}
+    
       <div className="corner-hud tl"></div><div className="corner-hud tr"></div>
       <div className="corner-hud bl"></div><div className="corner-hud br"></div>
 
@@ -195,7 +195,7 @@ export default function Equipo() {
                 <span className="blink" style={{background: 'var(--green-dim)', color: 'var(--green)', padding: '2px 6px', border: '1px solid var(--green)'}}>ONLINE</span>
               </div>
 
-              {/* Contenedor de imagen con efectos hiper-cibernéticos y láser doble */}
+             
               <div 
                 className="vfx-frame-container"
                 style={{position: 'relative', height: '210px', background: '#000', border: '1px solid var(--border-dim)', cursor: 'pointer', overflow: 'hidden', zIndex: 4}}
@@ -244,7 +244,7 @@ export default function Equipo() {
           ))}
         </div>
       ) : (
-        /* VISTA DE PERFIL ABIERTA CON ENTRADA HOLOGRÁFICA FLUIDA */
+   
         <div className="matrix-profile-transition">
           <button className="btn" style={{marginBottom: '20px'}} onClick={() => setSelectedOp(null)}>&lt; VOLVER A LA GRILLA DE OPERATIVOS</button>
           
@@ -331,7 +331,7 @@ export default function Equipo() {
         </div>
       )}
 
-      {/* ESTILOS DE TRANSICIÓN LIMPIA Y FLASHERA MATRIX */}
+  
       <style>{`
         .op-card-creative {
           transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);

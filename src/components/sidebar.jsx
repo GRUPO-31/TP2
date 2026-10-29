@@ -17,7 +17,7 @@ export default function Sidebar({ isOpen, setIsOpen, isCollapsed, setIsCollapsed
           SINTAXIA <span>.SYS</span>
         </NavLink>
         
-        {/* Botón para contraer la sidebar en pantallas grandes */}
+      
         <button 
           className="sidebar-toggle" 
           onClick={() => setIsCollapsed(!isCollapsed)}

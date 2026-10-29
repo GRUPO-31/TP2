@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [titulo, setTitulo] = useState('');
-  const tituloFinal = "SINTAXIA"; // Nombre oficial de la empresa
+  const tituloFinal = "SINTAXIA"; 
   const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
 
-  // Efecto Parallax interactivo sutil (sigue al mouse)
+  
   const handleMouseMove = (e) => {
     const x = (e.clientX / window.innerWidth - 0.5) * 15;
     const y = (e.clientY / window.innerHeight - 0.5) * 15;
     setMousePos({ x, y });
   };
 
-  // Efecto de decodificación del título al cargar
+
   useEffect(() => {
     let iteracion = 0;
     const intervalo = setInterval(() => {
@@ -43,7 +43,7 @@ export default function Home() {
         perspective: '1200px',
       }}
     >
-      {/* Reactor de Anillos Holográficos (Fondo 3D) */}
+      
       <div className="hologram-reactor" style={{
         transform: `translateZ(-100px) rotateX(${mousePos.y * -1}deg) rotateY(${mousePos.x}deg)`
       }}>
@@ -52,7 +52,7 @@ export default function Home() {
         <div className="reactor-ring ring-3"></div>
       </div>
 
-      {/* Panel Central Integrado (Efecto Cristal / Glassmorphism) */}
+    
       <div className="glass-panel" style={{
         transform: `translateZ(30px) rotateX(${mousePos.y * -0.5}deg) rotateY(${mousePos.x * 0.5}deg)`,
       }}>
@@ -64,7 +64,7 @@ export default function Home() {
           {titulo}
         </h1>
         
-        {/* Descripción oficial de la empresa */}
+     
         <div className="description-box">
           <p>
             <strong>SINTAXIA</strong> es una firma de desarrollo tecnológico especializada en arquitecturas web de alta densidad.
@@ -74,7 +74,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Botones de acción integrados */}
+   
         <div className="action-panels">
           <Link to="/equipo" className="cyber-btn-angled primary">
             <span className="btn-glare"></span>
@@ -87,7 +87,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Métricas flotantes sutiles en los bordes */}
+   
       <div className="floating-metric top-left" style={{ transform: `translate(${mousePos.x * 1.5}px, ${mousePos.y * 1.5}px)` }}>
         <span>LATENCIA_UI</span>
         <strong>1.02ms</strong>
@@ -97,7 +97,7 @@ export default function Home() {
         <strong>100% ONLINE</strong>
       </div>
 
-      {/* ESTILOS CSS ADAPTADOS A VARIABLES GLOBALES */}
+    
       <style>{`
         .home-integrated {
           background: radial-gradient(circle at center, var(--green-dim) 0%, transparent 60%);

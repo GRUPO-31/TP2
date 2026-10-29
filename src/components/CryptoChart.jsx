@@ -15,7 +15,7 @@ const dateTimeFormatter = new Intl.DateTimeFormat('es-AR', {
   hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone,
 });
 
-// Datos de CoinGecko: pares [timestamp en milisegundos, precio].
+
 export default function CryptoChart({ data = [], name = '', intervalHours = 1 }) {
   const points = data
     .filter((point) => Array.isArray(point) && Number.isFinite(point[0]) && Number.isFinite(point[1]))

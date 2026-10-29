@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Sidebar from './components/sidebar';
 import './index.css';
 
-// Lazy loading para optimizar rendimiento de páginas
+
 const Home = lazy(() => import('./pages/home'));
 const Equipo = lazy(() => import('./pages/equipo'));
 const Catalogo = lazy(() => import('./pages/catalogo'));
@@ -11,7 +11,7 @@ const ApiPublica = lazy(() => import('./pages/apiPublica'));
 const ArbolComponentes = lazy(() => import('./pages/arbolComponentes'));
 const Bitacora = lazy(() => import('./pages/bitacora'));
 
-// Componente de Carga Temporal (Suspense Fallback)
+
 const CyberLoader = () => (
   <div style={{
     minHeight: '60vh',
@@ -32,20 +32,20 @@ const CyberLoader = () => (
   </div>
 );
 
-// Componente para aplicar el Efecto de Desconexión adaptado según el tema activo
+
 function AnimatedRoutes() {
   const location = useLocation();
   const [animating, setAnimating] = useState(false);
   const [isRedTheme, setIsRedTheme] = useState(false);
 
   useEffect(() => {
-    // Detectar si el modo crítico (rojo) está activo en el body
+   
     setIsRedTheme(document.body.classList.contains('theme-red'));
     setAnimating(true);
     
     const timer = setTimeout(() => {
       setAnimating(false);
-    }, 650); // Duración exacta de la animación
+    }, 650); 
 
     return () => clearTimeout(timer);
   }, [location.pathname]);
@@ -74,7 +74,7 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  // Persistencia de Tema en LocalStorage (Verde / Rojo Matrix)
+  
   const [themeRed, setThemeRed] = useState(() => {
     return localStorage.getItem('sintaxia_theme') === 'red';
   });
@@ -99,7 +99,7 @@ export default function App() {
     };
   }, [themeRed]);
 
-  // Efecto global para el fondo animado Matrix en Canvas con purga limpia de color
+
   useEffect(() => {
     const canvas = document.getElementById("matrix-canvas");
     if (!canvas) return;
@@ -150,7 +150,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      {/* Canvas global del fondo Matrix con reseteo limpio */}
+     
       <canvas id="matrix-canvas" style={{
         position: 'fixed',
         inset: 0,

@@ -33,7 +33,6 @@ export default function ApiPublica() {
 
     async function consultarHistorial() {
       try {
-        // Siete días ofrece resolución horaria automática y timestamps reales.
         const response = await fetch(`https://api.coingecko.com/api/v3/coins/${encodeURIComponent(chartCoinId)}/market_chart?vs_currency=usd&days=7`, { signal: controller.signal });
         if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
         const json = await response.json();
@@ -97,12 +96,18 @@ export default function ApiPublica() {
         <p>Canal de consulta asíncrona en grilla táctica de tarjetas con efectos visuales avanzados. Haz clic en cualquier activo para inspeccionar.</p>
       </div>
 
-      <div style={{marginBottom: '25px', display: 'flex', gap: '15px', alignItems: 'center', flexWrap: 'wrap'}}>
-        <button className="btn btn-primary" onClick={consultarMercado} disabled={cargando} style={{fontSize: '0.8rem'}}>
-          {cargando ? '[ SINCRONIZANDO... ]' : '⚡ ACTUALIZAR MERCADO EN VIVO'}
-        </button>
-        <span style={{fontFamily: 'var(--font-code)', fontSize: '0.7rem', color: 'var(--text-muted)'}}>
-          * Actualización automática cada 45 segundos.
+      <div style={{marginBottom: '25px', display: 'flex', alignItems: 'center'}}>
+        <span style={{
+          fontFamily: 'var(--font-code)', 
+          fontSize: '0.75rem', 
+          color: cargando ? 'var(--yellow)' : 'var(--cyan)',
+          padding: '6px 12px',
+          background: 'rgba(0, 229, 255, 0.05)',
+          border: '1px dashed var(--border-dim)'
+        }}>
+          {cargando 
+            ? '⚡ [ SINCRONIZANDO CON EL SERVIDOR... ]' 
+            : '⚡ [ TELEMETRÍA AUTOMÁTICA ACTIVA: SINCRONIZACIÓN CADA 45 SEGUNDOS ]'}
         </span>
       </div>
 
@@ -214,7 +219,6 @@ export default function ApiPublica() {
         )}
       </section>
 
-      {/* MODAL DE INSPECCIÓN DE ACTIVO */}
       {modalCrypto && (
         <div style={{
           position: 'fixed',
@@ -274,7 +278,7 @@ export default function ApiPublica() {
         </div>
       )}
 
-      {/* ESTILOS DE LAS TARJETAS Y EFECTOS */}
+   
       <style>{`
         .crypto-card-heading {
           display: flex;

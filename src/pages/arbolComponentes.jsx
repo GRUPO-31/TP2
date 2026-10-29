@@ -4,9 +4,11 @@ export default function ArbolComponentes() {
   const [expandidoApp, setExpandidoApp] = useState(true);
   const [expandidoLayout, setExpandidoLayout] = useState(true);
   const [expandidoAppLayout, setExpandidoAppLayout] = useState(true);
+  const [expandidoSidebar, setExpandidoSidebar] = useState(true); // Estado del Sidebar
   const [expandidoMainContent, setExpandidoMainContent] = useState(true);
   const [expandidoRutas, setExpandidoRutas] = useState(true);
   const [expandidoApi, setExpandidoApi] = useState(true);
+
   return (
     <div className="cyber-frame">
       <div className="corner-hud tl"></div><div className="corner-hud tr"></div>
@@ -34,16 +36,25 @@ export default function ArbolComponentes() {
 
                   <div>📄 Canvas (Fondo animado Matrix)</div>
 
-                  {/* Carpeta app-layout desplegable */}
                   <div className="tree-toggle" onClick={() => setExpandidoAppLayout(!expandidoAppLayout)}>
                     📁 app-layout (Contenedor compartido)
                   </div>
 
                   {expandidoAppLayout && (
                     <div className="tree-node">
-                      <div>📄 Sidebar.jsx (Menú lateral)</div>
+                      
+                      {/* Sidebar desplegable */}
+                      <div className="tree-toggle" onClick={() => setExpandidoSidebar(!expandidoSidebar)}>
+                        📁 Sidebar.jsx (Menú lateral)
+                      </div>
 
-                      {/* Carpeta main-content desplegable */}
+                      {/* Botón táctico hijo del Sidebar */}
+                      {expandidoSidebar && (
+                        <div className="tree-node">
+                          <div>📄 NoTouchWarningButton.jsx (Botón Protocolo Caos)</div>
+                        </div>
+                      )}
+
                       <div className="tree-toggle" onClick={() => setExpandidoMainContent(!expandidoMainContent)}>
                         📁 main-content (Contenido principal)
                       </div>

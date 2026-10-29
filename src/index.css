@@ -13,7 +13,7 @@
     --font-code: "JetBrains Mono", monospace;
 }
 
-/* --- TEMA CYBERPUNK MATRIX RED (CAOS TOTAL Y LETRAS TEMBLOROSAS) --- */
+
 body.theme-red {
     --bg: #0d0203;
     --bg-card: rgba(22, 3, 5, 0.95);
@@ -32,7 +32,7 @@ body.theme-red {
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1), linear;
 }
 
-/* --- ANIMACIÓN DE RECUPERACIÓN --- */
+
 body:not(.theme-red) {
     animation: systemRecoveryGlow 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -52,7 +52,7 @@ body.theme-red .op-card-creative {
     filter: contrast(135%) hue-rotate(-10deg);
 }
 
-/* --- EFECTO DE LETRAS TEMBLANDO Y GLICHEADAS EN TODA LA WEB --- */
+
 body.theme-red h1, 
 body.theme-red h2, 
 body.theme-red h3, 
@@ -104,11 +104,11 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
   .main-content { margin-left: 0; padding: 20px; padding-top: 80px; }
 }
 
-/* Sidebar */
+
 .sidebar { position: fixed; top: 0; left: 0; width: 280px; height: 100vh; background: rgba(2, 10, 7, 0.95); border-right: 1px solid var(--border-dim); display: flex; flex-direction: column; z-index: 1000; backdrop-filter: blur(12px); transition: transform 0.3s ease, width 0.3s ease; }
 body.theme-red .sidebar { background: rgba(18, 2, 4, 0.96); border-right: 1px dashed var(--border-dim); }
 
-/* Aislar el sidebar para que no se achique */
+
 body.theme-red .sidebar {
     transform: none !important;
     animation: none !important;
@@ -126,7 +126,7 @@ body.theme-red .nav-cyber-link { background: rgba(255, 30, 56, 0.03); border-col
 .nav-cyber-link:hover, .nav-cyber-link.active { color: #fff; background: var(--green-dim); border-color: var(--green); box-shadow: 0 0 15px var(--green-glow); }
 .nav-cyber-link.active span { color: var(--green); text-shadow: 0 0 8px var(--green); }
 
-/* --- ESTILOS DEL BOTÓN DE ADVERTENCIA "NO TOCAR" --- */
+
 .cyber-warning-btn {
     position: relative;
     display: flex;
@@ -310,7 +310,7 @@ body.theme-red .op-card-creative {
 }
 .blink { animation: blinker 1.2s linear infinite; }
 
-/* --- EFECTO MODO VERDE: HOLOGRÁFICO LIMPIO --- */
+
 .zion-disconnect-transition {
     position: relative;
     width: 100%;
@@ -328,7 +328,7 @@ body.theme-red .op-card-creative {
     100% { opacity: 0; filter: blur(12px) brightness(0); }
 }
 
-/* --- EFECTO MODO ROJO / CRÍTICO: CAOS TOTAL Y CORRUPCIÓN DE DATOS --- */
+
 .zion-red-glitch-transition {
     animation: redChaosSystemCrash 0.65s cubic-bezier(0.77, 0, 0.175, 1) forwards !important;
 }

@@ -8,13 +8,13 @@ export default function Catalogo() {
   const [modalRecurso, setModalRecurso] = useState(null);
   const [telemetriaClicks, setTelemetriaClicks] = useState({});
 
-  // Categorías únicas
+
   const categorias = useMemo(() => {
     const cats = (recursosData || []).map(r => r.categoria || 'GENERAL');
     return ['TODAS', ...new Set(cats)];
   }, []);
 
-  // Filtrado y Ordenamiento (Soporta búsqueda por ID y Texto)
+ 
   const recursosFiltrados = useMemo(() => {
     let resultado = (recursosData || []).filter(item => {
       const query = busqueda.toLowerCase().trim();
@@ -102,7 +102,6 @@ export default function Catalogo() {
           </div>
         </div>
 
-        {/* Filtros por Categoría */}
         <div style={{display: 'flex', gap: '8px', flexWrap: 'wrap'}}>
           {categorias.map((cat, idx) => (
             <button
@@ -145,7 +144,7 @@ export default function Catalogo() {
         <span className="blink">[TELEMETRÍA_ACTIVA: OK]</span>
       </div>
 
-      {/* Grilla de Recursos con Láser Único Normal y VFX */}
+    
       {recursosFiltrados.length === 0 ? (
         <div style={{padding: '50px', textAlign: 'center', fontFamily: 'var(--font-code)', color: '#ff4444', border: '1px dashed #ff4444', background: 'rgba(255,0,0,0.05)'}}>
           &gt; ERROR_404: No se encontraron registros coincidentes en la base de datos.
@@ -191,7 +190,6 @@ export default function Catalogo() {
         </div>
       )}
 
-      {/* MODAL DE INSPECCIÓN TÁCTICA */}
       {modalRecurso && (
         <div style={{
           position: 'fixed',
@@ -253,7 +251,7 @@ export default function Catalogo() {
         </div>
       )}
 
-      {/* Estilos CSS con Láser Único Normal */}
+    
       <style>{`
         .cyber-input:focus {
           border-color: var(--green) !important;

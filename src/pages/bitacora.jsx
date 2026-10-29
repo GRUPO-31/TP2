@@ -9,7 +9,8 @@ const bitacoraData = [
   { fecha: '10/10/2026', hito: 'Consumo de API Pública y Manejo de Estados.', estado: 'OK', desc: 'Integración con API CoinCap incorporando estados de carga y manejo de errores.' },
   { fecha: '15/10/2026', hito: 'Optimización de filtros y estado vacío en Datos Locales.', estado: 'FIX', desc: 'Implementación del mensaje de contingencia ante búsquedas sin coincidencia y botón para restablecer parámetros a la lista completa.' },
   { fecha: '18/10/2026', hito: 'Control de recarga directa y configuración de Vercel.', estado: 'FIX', desc: 'Configuración de reescrituras en vercel.json para evitar errores 404 al refrescar rutas directas de React Router en producción.' },
-  { fecha: '20/10/2026', hito: 'Auditoría integral de accesibilidad y documentación README.', estado: 'OK', desc: 'Verificación de navegación sin depender del botón Atrás, comprobación de perfiles sin sesión y declaración detallada del uso de IA.' }
+  { fecha: '20/10/2026', hito: 'Auditoría integral de accesibilidad y documentación README.', estado: 'OK', desc: 'Verificación de navegación sin depender del botón Atrás, comprobación de perfiles sin sesión y declaración detallada del uso de IA.' },
+  { fecha: '29/10/2026', hito: 'Aislamiento del "Botón No Tocar" y actualización del Árbol.', estado: 'UPDATE', desc: 'Creación del componente independiente NoTouchWarningButton.jsx, actualización del árbol interactivo para mostrar su jerarquía dentro de Sidebar, y automatización del escaneo de la API de mercado cada 45 segundos.' }
 ];
 
 export default function Bitacora() {
