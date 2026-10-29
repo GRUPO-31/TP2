@@ -17,10 +17,10 @@ Aplicación web desarrollada en React para la gestión y presentación del equip
 ---
 
 ## 👥 Integrantes del Equipo
-- **Diego Rodriguez** — Lead Architect | [Perfil de GitHub](https://github.com/diegojrodriguez)
-- **Brian Lavandera** — Fullstack Dev | [Perfil de GitHub](https://github.com/brianlavandera3)
-- **Sergio Vargas** — QA Engineer | [Perfil de GitHub](https://github.com/SergioVargas101)
-- **Cristian Villagra** — AI Engineer | [Perfil de GitHub](https://github.com/Crrisst)
+- **Diego Rodriguez** —  | [Perfil de GitHub](https://github.com/diegojrodriguez)
+- **Brian Lavandera** — | [Perfil de GitHub](https://github.com/brianlavandera3)
+- **Sergio Vargas** — | [Perfil de GitHub](https://github.com/SergioVargas101)
+- **Cristian Villagra** — | [Perfil de GitHub](https://github.com/Crrisst)
 
 ---
 
